@@ -2,7 +2,11 @@ package com.best.myquote
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.best.myquote.databinding.ActivityMainBinding
+import com.loopj.android.http.AsyncHttpClient
+import com.loopj.android.http.AsyncHttpResponseHandler
+import cz.msebera.android.httpclient.Header
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +25,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getRandomQuote() {
-
+        binding.progressBar.visibility = View.VISIBLE
+        val client = AsyncHttpClient()
+        val url = "https://quote-api.dicoding.dev/random"
+        client.get(url, object: AsyncHttpResponseHandler() {
+            override fun onSuccess(
+                statusCode: Int,
+                headers: Array<Header>,
+                responseBody: ByteArray
+            ) {
+                    TODO("Not yet implemented")
+            }
+            override fun onFailure(
+                statusCode: Int,
+                headers: Array<out Header>?,
+                responseBody: ByteArray?,
+                error: Throwable?
+            ) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
