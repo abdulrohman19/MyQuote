@@ -14,7 +14,7 @@ class QuoteAdapter (private val listReview: ArrayList<String>) : RecyclerView.Ad
         return ViewHolder(view)
     }
 
-    override fun onBindingViewHolder(viewHolder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.tvItem.text = listReview[position]
     }
 

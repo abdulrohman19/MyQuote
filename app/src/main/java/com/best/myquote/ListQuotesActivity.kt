@@ -2,6 +2,7 @@ package com.best.myquote
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -12,7 +13,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
 import org.json.JSONArray
 import java.lang.Exception
-import kotlin.math.log
 
 class ListQuotesActivity : AppCompatActivity() {
 
@@ -52,7 +52,7 @@ class ListQuotesActivity : AppCompatActivity() {
                 val listQuote = ArrayList<String>()
 
                 val result = String(responseBody)
-                log.d(TAG, result)
+                Log.d(TAG, result)
                 try {
                     val jsonArray = JSONArray(result)
 
