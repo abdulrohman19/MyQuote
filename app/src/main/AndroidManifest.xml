@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MyQuote"
         tools:targetApi="31">
         <activity
+            android:name=".ListQuotesActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
