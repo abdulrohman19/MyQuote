@@ -10,6 +10,9 @@ import com.best.myquote.databinding.ActivityListQuotesBinding
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
+import org.json.JSONArray
+import java.lang.Exception
+import kotlin.math.log
 
 class ListQuotesActivity : AppCompatActivity() {
 
@@ -45,6 +48,27 @@ class ListQuotesActivity : AppCompatActivity() {
                 responseBody: ByteArray
             ) {
                 binding.progressBar.visibility = View.INVISIBLE
+
+                val listQuote = ArrayList<String>()
+
+                val result = String(responseBody)
+                log.d(TAG, result)
+                try {
+                    val jsonArray = JSONArray(result)
+
+                    for (i in 0 until jsonArray.length()) {
+                        val jsonObject = jsonArray.getJSONObject(i)
+                        val quote = jsonObject.getString("en")
+                        val author = jsonObject.getString("author")
+                        listQuote.add("\n$quote\n - $author\n")
+                    }
+
+                    val adapter = QuoteAdapter(listQuote)
+                    binding.listQuotes.adapter = adapter
+                } catch (e: Exception) {
+                    Toast.makeText(this@ListQuotesActivity, e.message, Toast.LENGTH_SHORT).show()
+                    e.printStackTrace()
+                }
             }
 
             override fun onFailure(
